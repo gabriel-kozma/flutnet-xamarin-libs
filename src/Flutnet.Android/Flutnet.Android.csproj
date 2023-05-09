@@ -45,6 +45,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Flutnet.Interop">
+      <HintPath>..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.Android\bin\ReleaseWithDebugNativeRef\Flutnet.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Flutnet.Interop.Java8">
+      <HintPath>..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.Android\bin\ReleaseWithDebugNativeRef\Flutnet.Interop.Java8.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FlutnetBridgeMode.cs" />
@@ -67,8 +73,7 @@
     <None Include="Resources\AboutResources.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Flutnet.Interop.Android" Version="2.0.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
