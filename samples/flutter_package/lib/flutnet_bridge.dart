@@ -74,17 +74,17 @@ class FlutnetBridge {
 
   /// Invoke the message on the channel
   final Future<Map<String, dynamic>> Function({
-    required String instanceId,
-    required String service,
-    required String operation,
-    required Map<String, dynamic> arguments,
+    required String? instanceId,
+    required String? service,
+    required String? operation,
+    required Map<String, dynamic>? arguments,
   }) invokeMethod;
 
   static Future<Map<String, dynamic>> _invokeOnChannel({
-    required String instanceId,
-    required String service,
-    required String operation,
-    required Map<String, dynamic> arguments,
+    required String? instanceId,
+    required String? service,
+    required String? operation,
+    required Map<String, dynamic>? arguments,
   }) {
     print(
       "Invoking on platform channel $operation on $service :$instanceId: build mode:$buildMode",
@@ -98,10 +98,10 @@ class FlutnetBridge {
   }
 
   static Future<Map<String, dynamic>> _invokeOnSocket({
-    required String instanceId,
-    required String service,
-    required String operation,
-    required Map<String, dynamic> arguments,
+    required String? instanceId,
+    required String? service,
+    required String? operation,
+    required Map<String, dynamic>? arguments,
   }) {
     print(
       "Invoking on socket $operation on $service :$instanceId: build mode:$buildMode",
@@ -137,8 +137,8 @@ class FlutnetBridge {
 }
 
 class _FlutnetEventInfo {
-  final String instanceId; // The instance id that have the event
-  final String event; // The reference for the event
+  final String? instanceId; // The instance id that have the event
+  final String? event; // The reference for the event
   final Map? args; // The data sended throw the event
 
   _FlutnetEventInfo({
@@ -157,18 +157,18 @@ class _FlutnetEventInfo {
 
   static _FlutnetEventInfo fromJson(Map json) {
     return _FlutnetEventInfo(
-      instanceId: json['instanceId'] as String,
-      event: json['event'] as String,
-      args: json['args'] as Map,
+      instanceId: json['instanceId'] as String?,
+      event: json['event'] as String?,
+      args: json['args'] as Map?,
     );
   }
 }
 
 class _FlutnetMethodInfo {
   final int requestId;
-  final String instance;
-  final String service;
-  final String operation;
+  final String? instance;
+  final String? service;
+  final String? operation;
 
   _FlutnetMethodInfo({
     required this.requestId,
@@ -189,9 +189,9 @@ class _FlutnetMethodInfo {
   static _FlutnetMethodInfo fromJson(Map json) {
     return _FlutnetMethodInfo(
       requestId: json['requestId'] as int,
-      instance: json['instance'] as String,
-      service: json['service'] as String,
-      operation: json['operation'] as String,
+      instance: json['instance'] as String?,
+      service: json['service'] as String?,
+      operation: json['operation'] as String?,
     );
   }
 }
@@ -200,8 +200,8 @@ class _FlutnetMessage {
   final _FlutnetMethodInfo? methodInfo;
   final Map<String, dynamic>? arguments;
   final Map<String, dynamic>? result;
-  final String errorCode;
-  final String errorMessage;
+  final String? errorCode;
+  final String? errorMessage;
   final Map? event;
   final Map? exception;
 
@@ -209,8 +209,8 @@ class _FlutnetMessage {
     this.methodInfo,
     this.arguments,
     this.result,
-    this.errorCode = "",
-    this.errorMessage = "",
+    this.errorCode,
+    this.errorMessage,
     this.event,
     this.exception,
   });
@@ -297,22 +297,22 @@ class _PlatformChannel {
         var requestId = msg.methodInfo?.requestId;
         if (requestId != null && _sendRequestMap.containsKey(requestId)) {
           // Invoke the task completion
-          Completer<Map<String, dynamic>>? request =
-              _sendRequestMap[requestId];
-
-          bool isFailed = msg.errorCode.isNotEmpty;
-          var exception = PlatformOperationException.fromJsonDynamic(
-            msg.exception as Map<String, dynamic>,
-          );
-          request?.completeError(exception);
-        
+          var isFailed = msg.errorCode != null && msg.errorCode!.isNotEmpty;
+          if (isFailed && msg.exception != null){
+            Completer<Map<String, dynamic>>? request = _sendRequestMap[requestId];
+            var exception = PlatformOperationException.fromJsonDynamic(
+              msg.exception as Map<String, dynamic>,
+            );
+            request?.completeError(exception);
+          }
           _sendRequestMap.remove(requestId);
         }
       });
     } catch (e) {
       // Error during deserialization
       print(
-        "flutter_xamarin_debug: error during _onMessageReceived deserialization.",
+        "flutter_xamarin_debug1: error during _onMessageReceived deserialization." +
+            e.toString(),
       );
     }
 
@@ -320,10 +320,10 @@ class _PlatformChannel {
   }
 
   Future<Map<String, dynamic>> invokeMethod({
-    required String instanceId,
-    required String service,
-    required String operation,
-    required Map<String, dynamic> arguments,
+    required String? instanceId,
+    required String? service,
+    required String? operation,
+    required Map<String, dynamic>? arguments,
   }) {
     final Completer<Map<String, dynamic>> completer =
         new Completer<Map<String, dynamic>>();
@@ -350,8 +350,8 @@ class _PlatformChannel {
           final String jsonMethodInfo = jsonEncode(methodInfo);
 
           // Serialize all the args as Json string
-          final Map<String, String> args = arguments
-              .map((argName, value) => MapEntry(argName, jsonEncode(value)));
+          final Map<String, String>? args = arguments != null ?
+          arguments.map((argName, value) => MapEntry(argName, jsonEncode(value))) : null;
 
           // Send to platform channel
           await _platformChannel.invokeMethod(
@@ -436,7 +436,8 @@ class _WebSocketChannel {
     }
   }
 
-  _WebSocketChannel._internal(this._eventsController, this._eventsIn, this._eventsOut) {
+  _WebSocketChannel._internal(
+      this._eventsController, this._eventsIn, this._eventsOut) {
     _sendLock.synchronized(() async {
       // Check if the app is embedded
       bool isAppEmbedded = await _isAppEmbedded();
@@ -461,10 +462,11 @@ class _WebSocketChannel {
   factory _WebSocketChannel() {
     if (_instance == null) {
       StreamController<_FlutnetEventInfo> controller =
-      StreamController<_FlutnetEventInfo>();
+          StreamController<_FlutnetEventInfo>();
       Stream<_FlutnetEventInfo> outEvent =
-      controller.stream.asBroadcastStream();
-      _instance = _WebSocketChannel._internal(controller, controller.sink, outEvent);
+          controller.stream.asBroadcastStream();
+      _instance =
+          _WebSocketChannel._internal(controller, controller.sink, outEvent);
     }
     return _instance!;
   }
@@ -504,7 +506,8 @@ class _WebSocketChannel {
   ///
   /// Oopen the connection resending all the queued messages with no response.
   ///
-  Future<void> _autoConnect({required Duration delay, bool forceOpen = false}) async {
+  Future<void> _autoConnect(
+      {required Duration delay, bool forceOpen = false}) async {
     // * If disposed we release the memory
     if (_disposed) {
       await _closeConnection();
@@ -524,7 +527,7 @@ class _WebSocketChannel {
         (forceOpen == true && _socketChannelConnected == false)) {
       // Aspetto un po prima di collegarmi
       await Future.delayed(delay);
-    
+
       //* --------------------------------------------------------------
       //* IOWebSocketChannel.connect("ws://127.0.0.1:12345/flutter");
       //* OPEN THE CONNECCTION
@@ -642,10 +645,10 @@ class _WebSocketChannel {
         _FlutnetMessage msg = _FlutnetMessage.fromJson(json);
 
         // Handlig for event
-        if (msg.event != null){
+        if (msg.event != null) {
           _eventsIn.add(_FlutnetEventInfo.fromJson(msg.event!));
         }
-      
+
         // Deserialize the real application message
         //FNetMessage result = FNetSerializer.deserialize(msg.fnetMessage);
 
@@ -658,22 +661,21 @@ class _WebSocketChannel {
 
           if (_sendRequestMap.containsKey(requestId)) {
             // Invoke the task completion
-            Completer<Map<String, dynamic>>? request =
-                _sendRequestMap[requestId];
-
-            bool isFailed = msg.errorCode.isNotEmpty;
-            var exception = PlatformOperationException.fromJsonDynamic(
-              msg.exception as Map<String, dynamic>,
-            );
-            request?.completeError(exception);
-          
+            var isFailed = msg.errorCode != null && msg.errorCode!.isNotEmpty;
+            if (isFailed && msg.exception != null) {
+              Completer<Map<String, dynamic>>? request = _sendRequestMap[requestId];
+              var exception = PlatformOperationException.fromJsonDynamic(
+                msg.exception as Map<String, dynamic>,
+              );
+              request?.completeError(exception);
+            }
             _sendRequestMap.remove(requestId);
           }
         });
       } catch (e) {
         // Error during deserialization
         print(
-          "flutter_xamarin_debug: error during _onMessageReceived deserialization.",
+          "flutter_xamarin_debug2: error during _onMessageReceived deserialization."+e.toString(),
         );
       }
     } else {
@@ -682,10 +684,10 @@ class _WebSocketChannel {
   }
 
   Future<Map<String, dynamic>> invokeMethod({
-    required String instanceId,
-    required String service,
-    required String operation,
-    required Map<String, dynamic> arguments,
+    required String? instanceId,
+    required String? service,
+    required String? operation,
+    required Map<String, dynamic>? arguments,
   }) {
     final Completer<Map<String, dynamic>> completer =
         new Completer<Map<String, dynamic>>();

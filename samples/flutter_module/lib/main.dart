@@ -7,7 +7,7 @@ import 'package:flutter_package/flutnet_bridge.dart';
 
 void main() {
   // Configure the bridge mode
-  FlutnetBridgeConfig.mode = FlutnetBridgeMode.PlatformChannel;
+  FlutnetBridgeConfig.mode = FlutnetBridgeMode.WebSocket;
   runApp(MyApp());
 }
 
