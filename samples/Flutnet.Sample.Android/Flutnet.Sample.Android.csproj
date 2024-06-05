@@ -17,7 +17,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -103,14 +103,23 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.Window">
+      <Version>1.2.0</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.2.0.3" />
     <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.2.0.2" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.1.0.5" />
-    <PackageReference Include="Flutnet.Android" Version="2.0.0" />
-    <PackageReference Include="Flutnet.Interop.Android" Version="2.0.4" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.Android\Flutnet.Interop.Android.csproj">
+      <Project>{ff7f682c-3813-4a38-9b08-1a5def1ee88a}</Project>
+      <Name>Flutnet.Interop.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Flutnet.Android\Flutnet.Android.csproj">
+      <Project>{42f7aaf0-49df-4d1e-9024-8118569dde0f}</Project>
+      <Name>Flutnet.Android</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flutnet.ModuleInterop.Android\Flutnet.ModuleInterop.Android.csproj">
       <Project>{9116C1C4-0C4E-45B5-807B-172A519AE0D3}</Project>
       <Name>Flutnet.ModuleInterop.Android</Name>

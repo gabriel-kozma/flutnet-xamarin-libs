@@ -15,7 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
     <AndroidUseAapt2>true</AndroidUseAapt2>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -45,12 +45,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="Flutnet.Interop">
-      <HintPath>..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.Android\bin\ReleaseWithDebugNativeRef\Flutnet.Interop.dll</HintPath>
-    </Reference>
-    <Reference Include="Flutnet.Interop.Java8">
-      <HintPath>..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.Android\bin\ReleaseWithDebugNativeRef\Flutnet.Interop.Java8.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FlutnetBridgeMode.cs" />
@@ -82,6 +76,14 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.Android\Flutnet.Interop.Android.csproj">
+      <Project>{ff7f682c-3813-4a38-9b08-1a5def1ee88a}</Project>
+      <Name>Flutnet.Interop.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.Java8\Flutnet.Interop.Java8.csproj">
+      <Project>{15debc74-e3eb-408f-8bae-e3a6404509f5}</Project>
+      <Name>Flutnet.Interop.Java8</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flutnet.ServiceModel\Flutnet.ServiceModel.csproj">
       <Project>{E652257F-F13C-458B-B6ED-804E1F2E77F5}</Project>
       <Name>Flutnet.ServiceModel</Name>

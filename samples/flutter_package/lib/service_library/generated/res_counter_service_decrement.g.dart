@@ -6,9 +6,8 @@ part of 'res_counter_service_decrement.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ResCounterServiceDecrement _$ResCounterServiceDecrementFromJson(Map json) {
-  return ResCounterServiceDecrement();
-}
+ResCounterServiceDecrement _$ResCounterServiceDecrementFromJson(Map json) =>
+    ResCounterServiceDecrement();
 
 Map<String, dynamic> _$ResCounterServiceDecrementToJson(
         ResCounterServiceDecrement instance) =>

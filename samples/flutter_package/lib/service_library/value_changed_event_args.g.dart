@@ -6,11 +6,10 @@ part of 'value_changed_event_args.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ValueChangedEventArgs _$ValueChangedEventArgsFromJson(Map json) {
-  return ValueChangedEventArgs(
-    value: json['Value'] as int,
-  );
-}
+ValueChangedEventArgs _$ValueChangedEventArgsFromJson(Map json) =>
+    ValueChangedEventArgs(
+      value: (json['Value'] as num?)?.toInt() ?? 0,
+    );
 
 Map<String, dynamic> _$ValueChangedEventArgsToJson(
         ValueChangedEventArgs instance) =>

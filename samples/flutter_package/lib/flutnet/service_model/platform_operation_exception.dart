@@ -10,7 +10,7 @@ part 'platform_operation_exception.g.dart';
 @JsonSerializable(nullable: true, explicitToJson: true, anyMap: true)
 class PlatformOperationException extends Object implements Exception {
   PlatformOperationException({
-    this.message,
+    this.message = "",
   });
 
   @JsonKey(name: "Message", nullable: true)
@@ -35,7 +35,7 @@ class PlatformOperationException extends Object implements Exception {
   factory PlatformOperationException.fromJsonDynamic(
       Map<String, dynamic> json) {
     // Nothing to do
-    if (json == null || json.isEmpty) return null;
+    //if (json.isEmpty) return null;
 
     try {
       String typeKey = json.keys.first;
@@ -46,7 +46,7 @@ class PlatformOperationException extends Object implements Exception {
       Map<String, dynamic> payload = json[typeKey];
 
       //! REAL DESERIALIZATION PROCESS
-      return fromJson(payload);
+      return fromJson!(payload);
     } catch (e) {
       throw new Exception('Error during lib deserialization process: $json');
     }

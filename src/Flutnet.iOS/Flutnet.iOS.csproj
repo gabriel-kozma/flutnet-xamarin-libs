@@ -38,9 +38,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="Flutnet.Interop">
-      <HintPath>..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.iOS\bin\ReleaseWithDebugNativeRef\Flutnet.Interop.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -81,6 +78,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.iOS\Flutnet.Interop.iOS.csproj">
+      <Project>{b65783b0-9c57-4ba3-b1dc-058639c50ad6}</Project>
+      <Name>Flutnet.Interop.iOS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flutnet.ServiceModel\Flutnet.ServiceModel.csproj">
       <Project>{E652257F-F13C-458B-B6ED-804E1F2E77F5}</Project>
       <Name>Flutnet.ServiceModel</Name>

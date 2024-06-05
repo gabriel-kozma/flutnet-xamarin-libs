@@ -6,11 +6,10 @@ part of 'platform_operation_exception.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlatformOperationException _$PlatformOperationExceptionFromJson(Map json) {
-  return PlatformOperationException(
-    message: json['Message'] as String,
-  );
-}
+PlatformOperationException _$PlatformOperationExceptionFromJson(Map json) =>
+    PlatformOperationException(
+      message: json['Message'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$PlatformOperationExceptionToJson(
         PlatformOperationException instance) =>

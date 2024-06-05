@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Flutnet.ServiceModel" Version="2.0.0" />
+    <ProjectReference Include="..\..\src\Flutnet.ServiceModel\Flutnet.ServiceModel.csproj" />
   </ItemGroup>
 
 </Project>
