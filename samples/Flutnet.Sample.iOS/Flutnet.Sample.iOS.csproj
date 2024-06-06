@@ -70,8 +70,6 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Flutnet.iOS" Version="2.0.0" />
-    <PackageReference Include="Flutnet.Interop.iOS" Version="2.0.4" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +173,18 @@
     -->
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.iOS\Flutnet.Interop.iOS.csproj">
+      <Project>{b65783b0-9c57-4ba3-b1dc-058639c50ad6}</Project>
+      <Name>Flutnet.Interop.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Flutnet.iOS\Flutnet.iOS.csproj">
+      <Project>{b5d20ddf-de45-4fe3-80d8-266df85507d2}</Project>
+      <Name>Flutnet.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
+    </ProjectReference>
     <ProjectReference Include="..\Flutnet.Sample.ServiceLibrary\Flutnet.Sample.ServiceLibrary.csproj">
       <Project>{52BFEE84-1FF1-42C9-B44E-821237C5643B}</Project>
       <Name>Flutnet.Sample.ServiceLibrary</Name>

@@ -81,6 +81,8 @@
     <ProjectReference Include="..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.iOS\Flutnet.Interop.iOS.csproj">
       <Project>{b65783b0-9c57-4ba3-b1dc-058639c50ad6}</Project>
       <Name>Flutnet.Interop.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
     <ProjectReference Include="..\Flutnet.ServiceModel\Flutnet.ServiceModel.csproj">
       <Project>{E652257F-F13C-458B-B6ED-804E1F2E77F5}</Project>
