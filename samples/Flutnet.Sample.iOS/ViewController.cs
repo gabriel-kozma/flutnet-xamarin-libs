@@ -41,7 +41,7 @@ namespace Flutnet.Sample
 #if DEBUG
                 _bridge = new FlutnetBridge(this.Engine, FlutnetBridgeMode.PlatformChannel);
 #else
-                _bridge = new FlutnetBridge(this.Engine);
+                _bridge = new FlutnetBridge(this.Engine, FlutnetBridgeMode.PlatformChannel);
 #endif
                 _initialized = true;
             }
@@ -52,7 +52,7 @@ namespace Flutnet.Sample
                 alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, a => tcs.SetResult(true)));
                 this.PresentViewController(alert, true, null);
                 await tcs.Task;
-                throw;
+                //throw;
             }
         }
     }
