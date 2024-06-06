@@ -80,10 +80,6 @@
       <Project>{ff7f682c-3813-4a38-9b08-1a5def1ee88a}</Project>
       <Name>Flutnet.Interop.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.Java8\Flutnet.Interop.Java8.csproj">
-      <Project>{15debc74-e3eb-408f-8bae-e3a6404509f5}</Project>
-      <Name>Flutnet.Interop.Java8</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Flutnet.ServiceModel\Flutnet.ServiceModel.csproj">
       <Project>{E652257F-F13C-458B-B6ED-804E1F2E77F5}</Project>
       <Name>Flutnet.ServiceModel</Name>
