@@ -7,7 +7,9 @@ import 'package:flutter_package/flutnet_bridge.dart';
 
 void main() {
   // Configure the bridge mode
-  FlutnetBridgeConfig.mode = FlutnetBridgeMode.WebSocket;
+  // http://semantic-portal.net/flutter-development-existing-app-running
+  // By attaching to Flutter on device(ctrl+shift+p: Debug: Attach Flutter on Device or terminal: flutter attach), it does not need to set Websocket mode for debugging.
+  FlutnetBridgeConfig.mode = FlutnetBridgeMode.PlatformChannel;
   runApp(MyApp());
 }
 
@@ -56,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final CounterService _counterService = CounterService("counter_service");
 
   // The current counter value
-  int _counterValue = -1;
+  int _counterValue = 0;
 
   void _load() async {
     // Get the value from xamarin

@@ -76,7 +76,7 @@ namespace Flutnet.Sample
             try
             {
 #if DEBUG
-                _bridge = new FlutnetBridge(flutterEngine, AppContext, FlutnetBridgeMode.WebSocket);
+                _bridge = new FlutnetBridge(flutterEngine, AppContext, FlutnetBridgeMode.PlatformChannel);
 #else
                 _bridge = new FlutnetBridge(flutterEngine, AppContext);
 #endif
