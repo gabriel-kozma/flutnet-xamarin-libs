@@ -8,7 +8,9 @@ import 'package:flutter_package/flutnet_bridge.dart';
 void main() {
   // Configure the bridge mode
   // http://semantic-portal.net/flutter-development-existing-app-running
-  // By attaching to Flutter on device(ctrl+shift+p: Debug: Attach Flutter on Device or terminal: flutter attach), it does not need to set Websocket mode for debugging.
+  // By attaching to Flutter on device, it does not need to set Websocket mode for debugging.
+  // VSCode  (ctrl+shift+p: Debug: Attach Flutter on Device or terminal: flutter attach)
+  // InteliJ (click Flutter Attach button)
   FlutnetBridgeConfig.mode = FlutnetBridgeMode.PlatformChannel;
   runApp(MyApp());
 }
