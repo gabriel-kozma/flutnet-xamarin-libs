@@ -25,7 +25,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>Apple Development: Manuel Bassanini (78TSEG2GK9)</CodesignKey>
+    <CodesignKey>Apple Development: Jie Fang (T458U3VRWM)</CodesignKey>
+    <CodesignProvision>iOS Team Provisioning Profile: com.i7chi.*</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>

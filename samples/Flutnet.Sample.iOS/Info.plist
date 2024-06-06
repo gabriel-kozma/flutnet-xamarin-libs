@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Flutnet Sample</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.flutnet.FlutnetSample</string>
+	<string>com.i7chi.FlutnetSample</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
