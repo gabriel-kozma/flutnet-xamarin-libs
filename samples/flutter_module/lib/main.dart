@@ -61,23 +61,49 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // The current counter value
   int _counterValue = 0;
+  String _counterError = "";
 
   void _load() async {
     // Get the value from xamarin
-    int value = await _counterService.getValue();
-    setState(() {
-      _counterValue = value;
-    });
+    try {
+      int value = await _counterService.getValue();
+      setState(() {
+        _counterValue = value;
+        _counterError = "got";
+      });
+    } catch (ex) {
+      setState(() {
+        _counterError = ex.toString();
+      });
+    }
   }
 
   void _increment() async {
     // Increment the value by calling the proper native (Xamarin) method
-    await _counterService.increment();
+    try {
+      await _counterService.increment();
+      setState(() {
+        _counterError = "increased";
+      });
+    } catch (ex) {
+      setState(() {
+        _counterError = ex.toString();
+      });
+    }
   }
 
   void _decrement() async {
     // Decrement the value by calling the proper native (Xamarin) method
-    await _counterService.decrement();
+    try {
+      await _counterService.decrement();
+      setState(() {
+        _counterError = "decreased";
+      });
+    } catch (ex) {
+      setState(() {
+        _counterError = ex.toString();
+      });
+    }
   }
 
   StreamSubscription<ValueChangedEventArgs>? _eventSubscription;
@@ -121,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               // Welcome message from xamarin
-              "The current value is",
+              "The current value is $_counterError",
               style: TextStyle(
                 fontSize: 20,
               ),
