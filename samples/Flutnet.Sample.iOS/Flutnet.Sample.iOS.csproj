@@ -159,24 +159,20 @@
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
-    <!--
     <NativeReference Include="../flutter_module/build/ios/framework/Debug/Flutter.xcframework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
-    -->
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)'=='Release' ">
     <NativeReference Include="../flutter_module/build/ios/framework/Release/App.xcframework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
-    <!--
     <NativeReference Include="../flutter_module/build/ios/framework/Release/Flutter.xcframework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
-    -->
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.iOS\Flutnet.Interop.iOS.csproj">
