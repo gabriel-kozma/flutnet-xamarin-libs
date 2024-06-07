@@ -15,21 +15,10 @@ namespace Flutnet.Sample
         {
         }
 
-        public override void ViewDidLoad()
+        public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
-        }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
-        }
-
-        public override async void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
 
             if (_initialized)
                 return;
@@ -54,6 +43,17 @@ namespace Flutnet.Sample
                 await tcs.Task;
                 //throw;
             }
+        }
+
+        public override void DidReceiveMemoryWarning()
+        {
+            base.DidReceiveMemoryWarning();
+            // Release any cached data, images, etc that aren't in use.
+        }
+
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
         }
     }
 }
