@@ -10,7 +10,7 @@ part 'res_counter_service_get_value.g.dart';
 class ResCounterServiceGetValue {
 
 	ResCounterServiceGetValue({
-		this.returnValue,
+		this.returnValue = 0,
 	});
 
 	@JsonKey(name: "ReturnValue", nullable: false)

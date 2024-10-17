@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Flutnet Sample</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.flutnet.FlutnetSample</string>
+	<string>com.i7chi.FlutnetSample</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -71,5 +71,11 @@
 	<string>App needs access to the camera.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>App needs access to the microphone, if you intend to record videos.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_dartobservatory._tcp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Allow Flutter tools on your computer to connect and debug yourapplication.</string>
 </dict>
 </plist>

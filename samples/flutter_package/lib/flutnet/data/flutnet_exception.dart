@@ -11,8 +11,8 @@ part 'flutnet_exception.g.dart';
 @JsonSerializable(nullable: true, explicitToJson: true, anyMap: true)
 class FlutnetException extends PlatformOperationException {
   FlutnetException({
-    this.code,
-    String message,
+    this.code = FlutnetErrorCode.OperationFailed,
+    String message = "",
   }) : super(
           message: message,
         );

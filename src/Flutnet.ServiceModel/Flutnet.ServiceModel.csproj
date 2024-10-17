@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType></DebugType>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
     <DocumentationFile>bin\Release\netstandard2.0\Flutnet.ServiceModel.xml</DocumentationFile>
   </PropertyGroup>
 

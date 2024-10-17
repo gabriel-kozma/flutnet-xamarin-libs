@@ -7,6 +7,10 @@ import 'package:flutter_package/flutnet_bridge.dart';
 
 void main() {
   // Configure the bridge mode
+  // http://semantic-portal.net/flutter-development-existing-app-running
+  // By attaching to Flutter on device, it does not need to set Websocket mode for debugging.
+  // VSCode  (ctrl+shift+p: Debug: Attach Flutter on Device or terminal: flutter attach)
+  // InteliJ (click Flutter Attach button)
   FlutnetBridgeConfig.mode = FlutnetBridgeMode.PlatformChannel;
   runApp(MyApp());
 }
@@ -34,7 +38,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -45,7 +49,7 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -56,27 +60,53 @@ class _MyHomePageState extends State<MyHomePage> {
   final CounterService _counterService = CounterService("counter_service");
 
   // The current counter value
-  int _counterValue = -1;
+  int _counterValue = 0;
+  String _counterError = "";
 
   void _load() async {
     // Get the value from xamarin
-    int value = await _counterService.getValue();
-    setState(() {
-      _counterValue = value;
-    });
+    try {
+      int value = await _counterService.getValue();
+      setState(() {
+        _counterValue = value;
+        _counterError = "got";
+      });
+    } catch (ex) {
+      setState(() {
+        _counterError = ex.toString();
+      });
+    }
   }
 
   void _increment() async {
     // Increment the value by calling the proper native (Xamarin) method
-    await _counterService.increment();
+    try {
+      await _counterService.increment();
+      setState(() {
+        _counterError = "increased";
+      });
+    } catch (ex) {
+      setState(() {
+        _counterError = ex.toString();
+      });
+    }
   }
 
   void _decrement() async {
     // Decrement the value by calling the proper native (Xamarin) method
-    await _counterService.decrement();
+    try {
+      await _counterService.decrement();
+      setState(() {
+        _counterError = "decreased";
+      });
+    } catch (ex) {
+      setState(() {
+        _counterError = ex.toString();
+      });
+    }
   }
 
-  StreamSubscription<ValueChangedEventArgs> _eventSubscription;
+  StreamSubscription<ValueChangedEventArgs>? _eventSubscription;
 
   @override
   void initState() {
@@ -109,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       body: Center(
         child: Column(
@@ -117,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               // Welcome message from xamarin
-              "The current value is",
+              "The current value is $_counterError",
               style: TextStyle(
                 fontSize: 20,
               ),

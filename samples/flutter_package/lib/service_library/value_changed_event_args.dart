@@ -9,7 +9,7 @@ part 'value_changed_event_args.g.dart';
 @JsonSerializable(nullable: true, explicitToJson: true, anyMap: true)
 class ValueChangedEventArgs {
   ValueChangedEventArgs({
-    this.value,
+    this.value = 0,
   });
 
   @JsonKey(name: "Value", nullable: false)

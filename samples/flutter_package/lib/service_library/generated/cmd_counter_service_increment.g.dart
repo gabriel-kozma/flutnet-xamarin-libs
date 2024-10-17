@@ -6,9 +6,8 @@ part of 'cmd_counter_service_increment.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CmdCounterServiceIncrement _$CmdCounterServiceIncrementFromJson(Map json) {
-  return CmdCounterServiceIncrement();
-}
+CmdCounterServiceIncrement _$CmdCounterServiceIncrementFromJson(Map json) =>
+    CmdCounterServiceIncrement();
 
 Map<String, dynamic> _$CmdCounterServiceIncrementToJson(
         CmdCounterServiceIncrement instance) =>

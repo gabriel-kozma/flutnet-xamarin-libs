@@ -15,7 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
     <AndroidUseAapt2>true</AndroidUseAapt2>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -67,8 +67,7 @@
     <None Include="Resources\AboutResources.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Flutnet.Interop.Android" Version="2.0.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -77,6 +76,10 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\flutnet-xamarin-bindings\src\Flutnet.Interop.Android\Flutnet.Interop.Android.csproj">
+      <Project>{ff7f682c-3813-4a38-9b08-1a5def1ee88a}</Project>
+      <Name>Flutnet.Interop.Android</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flutnet.ServiceModel\Flutnet.ServiceModel.csproj">
       <Project>{E652257F-F13C-458B-B6ED-804E1F2E77F5}</Project>
       <Name>Flutnet.ServiceModel</Name>

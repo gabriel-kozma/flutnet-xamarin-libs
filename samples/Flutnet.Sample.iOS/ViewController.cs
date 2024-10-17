@@ -15,21 +15,10 @@ namespace Flutnet.Sample
         {
         }
 
-        public override void ViewDidLoad()
+        public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
-        }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
-        }
-
-        public override async void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
 
             if (_initialized)
                 return;
@@ -41,7 +30,7 @@ namespace Flutnet.Sample
 #if DEBUG
                 _bridge = new FlutnetBridge(this.Engine, FlutnetBridgeMode.PlatformChannel);
 #else
-                _bridge = new FlutnetBridge(this.Engine);
+                _bridge = new FlutnetBridge(this.Engine, FlutnetBridgeMode.PlatformChannel);
 #endif
                 _initialized = true;
             }
@@ -52,8 +41,19 @@ namespace Flutnet.Sample
                 alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, a => tcs.SetResult(true)));
                 this.PresentViewController(alert, true, null);
                 await tcs.Task;
-                throw;
+                //throw;
             }
+        }
+
+        public override void DidReceiveMemoryWarning()
+        {
+            base.DidReceiveMemoryWarning();
+            // Release any cached data, images, etc that aren't in use.
+        }
+
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
         }
     }
 }
